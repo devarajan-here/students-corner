@@ -1,0 +1,49 @@
+{% extends 'Teacher/teacher_base.html' %}
+
+
+{% block postteacher %}
+
+<div class="container-fluid">
+    <h5><a href="{% url 'groups:group_list' %}">views Group List Details</a></h5>
+</div>
+
+{% endblock %}
+
+
+{% block preteacher %}
+
+{% if user.is_authenticated %}
+    {% if user.is_teacher %}
+        <h1>{{group.name}}</h1>
+        {% if user in group.students.all %}
+            <a class="btn btn-outline-success" href="{% url 'groups:group_attendance' group_slug=group.slug %}">Mark Attendance</a>
+            <a class="btn btn-outline-danger" href="{% url 'groups:group_leave' slug=group.slug %}">Leave</a>
+            <a class="btn btn-outline-secondary" href="{% url 'groups:list_attendance' slug=group.slug %}">View attendance list</a>
+            <a class="btn btn-danger" href="{% url 'groups:group_delete' slug=group.slug %}">Delete Group</a>
+        {% else %}
+            <a class="btn btn-outline-success" href="{% url 'groups:group_join' slug=group.slug %}">Join</a>
+    
+        {% endif %}
+    {% else %}
+    <h1>{{group.name}}</h1>
+            {% if user in group.students.all %}
+            <a class="btn btn-outline-danger" href="{% url 'groups:group_leave' slug=group.slug %}">Leave</a>
+            {% else %}
+            <a class="btn btn-outline-success" href="{% url 'groups:group_join' slug=group.slug %}">Join</a>
+
+            {% endif %}
+    {% endif %}
+{% endif %}
+
+{% endblock %}
+
+
+{% block teacher_content %}
+
+<div class="container-fluid">
+    <h3>More Details of {{group.name}}</h3>
+    <h4>class started at {{group.class_start_date}}</h4>
+    <h4>For Department {{group.for_class}}</h4>
+</div>
+
+{% endblock %}

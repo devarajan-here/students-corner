@@ -1,0 +1,18 @@
+{% extends "Teacher/teacher_base.html" %}
+{% load bootstrap5 %}
+
+{% block teacher_content %}
+
+<div class="container">
+    {% if is_updated %}
+    <h1>Already Updated Resently -> Mov on !</h1>
+    {% else %}
+    <h1>Update Student Profile</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form update_form %}
+        <input type="submit" class="btn btn-primary" value="SignUp">
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

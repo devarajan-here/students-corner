@@ -1,0 +1,16 @@
+{% extends 'Teacher/teacher_base.html' %}
+{% load bootstrap5 %}
+
+{% block teacher_content %}
+
+<div class="container-md">
+    <form method="post">
+        <h2>Attendance Marking(Giv Absent list using commas)</h2>
+        {% csrf_token %}
+        {% bootstrap_form create_attendanceform %}
+        <input type="submit" class="btn btn-outline-primary" value="Mark Attendance">
+    </form>
+</div>
+
+
+{% endblock %}

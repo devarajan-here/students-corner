@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% block preteacher %}{% endblock %}
+        {% block teacher_content %}{% endblock %}
+        {% block postteacher %}{% endblock %}
+    </div>
+</div>
+
+{% endblock %}

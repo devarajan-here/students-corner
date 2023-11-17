@@ -1,0 +1,20 @@
+{% extends 'Teacher/teacher_base.html' %}
+
+{% load bootstrap5 %}
+
+{% block teacher_content %}
+
+<div class="container">
+    <h1>Create New Group</h1>
+    <form action="{% url 'groups:new' %}" method="post">
+    <div class="mb-3">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-outline-success" value="Create Group">
+    </div>
+</form>
+
+</div>
+
+
+{% endblock %}

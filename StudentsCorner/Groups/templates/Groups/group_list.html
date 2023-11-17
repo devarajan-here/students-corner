@@ -1,0 +1,22 @@
+{% extends 'Teacher/teacher_base.html' %}
+
+
+{% block preteacher %}
+<div class="container-fluid">
+    <h1>List of Group details</h1>
+
+
+    {% for group in object_list %}
+
+    <div class="container-fluid">
+        <li>
+            <a href="{% url 'groups:group_detail' slug=group.slug %}">{{ group.name }}</a>
+        </li>
+    </div>
+    
+    
+    {% endfor %}
+
+</div>
+
+{% endblock %}

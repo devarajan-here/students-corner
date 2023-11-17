@@ -1,0 +1,44 @@
+{% extends 'Teacher/teacher_base.html' %}
+
+{% block preteacher %}
+
+<table>
+    <thead>
+      <tr>
+        <th>Roll No</th>
+        <th>Student Name</th>
+        <th>Attendance</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <td>{{ student.roll_no }}</td>
+        <td>{{ student.name }}</td>
+        <td>
+          <ul>
+            {% for record in attendance_records %}
+            {% if record.student == student %}
+            <li>{% if record.is_present %}Present{% else %}Absent{% endif %}</li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </td>
+        <td>{{ record.attendance.date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  
+  
+  
+    
+  
+  
+
+{% endblock %}
+
+
+

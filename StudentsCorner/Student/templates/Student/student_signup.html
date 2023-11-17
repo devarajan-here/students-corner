@@ -1,0 +1,21 @@
+{% extends 'Student/student_base.html' %}
+{% load bootstrap5 %}
+
+{% block student_content %}
+
+<div class="container">
+    {% if registed %}
+    <h1>Already Registed Login bro</h1>
+    {% else %}
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form Suser_form %}
+        {% bootstrap_form student_form %}
+        <input class="btn btn-outline-success" type="submit" value="SignUp">
+    </form>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}

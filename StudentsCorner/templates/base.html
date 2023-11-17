@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" />
+{% load static %}
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'fonts.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+
+
+</head>
+<body>
+<div id="header-wrapper">
+	<div id="header" class="container">
+    <div id="logo">
+			<h1><a href="{% url 'home' %}">STUDENTS  CORNER</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				{% if user.is_authenticated %}
+       		    {% if user.is_teacher %}
+				   <li class="nav-link">
+					<a href="{% url 'groups:new' %}">New Groups</a>
+				  </li>
+				  <li class="nav-link">
+					<a href="{% url 'groups:group_list' %}">My Groups</a>
+				  </li>
+          
+				  <li class="nav-link">
+					<a href="{% url 'teacher:detail' pk=user.pk %}">View Profile</a>
+				  </li>
+				  <li class="nav-link">
+					<a href="{% url 'teacher:update' pk=user.pk %}">update Profile</a>
+				  </li>
+				  <li class="nav-link">
+					<a href="{% url 'logout' %}">LogOut</a>
+				  </li>
+					{% else %}
+				  <li class="nav-link">
+            <a href="{% url 'teacher:update' pk=user.pk %}">update Profile</a>
+            </li>
+				  <li class="nav-link">
+            <a href="{% url 'student:detail' pk=user.pk %}">View Profile</a>
+          </li>
+          <li class="nav-link">
+            <a href="{% url 'groups:group_list' %}">My Groups</a>
+            </li>
+					<li class="nav-link">
+					  <a href="{% url 'logout' %}">LogOut</a>
+					</li>
+					{% endif %}
+				  {% else %}
+				  <li class="nav-link">
+					<a href="{% url 'login' %}">LogIn</a>
+				  </li>
+				  <li class="nav-link">
+					<a href="{% url 'teacher:signup' %}">Teacher SignUp</a>
+				  </li>
+				  <li class="nav-link">
+					<a href="{% url 'student:signup' %}">Student SignUp</a>
+				  </li>
+				  {% endif %}
+			</ul>
+		</div>
+	</div>
+	<main>
+		{% block content %}
+		{% endblock %}
+	</main>
+  {%block about%}
+  {% endblock %}
+</div>
+
+
+<div id="copyright" class="container">
+	<p>Project developed by Roshan , Jince , Devarajan</p>
+</div>
+</body>
+</html>

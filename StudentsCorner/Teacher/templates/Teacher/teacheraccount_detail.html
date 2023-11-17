@@ -1,0 +1,18 @@
+{% extends "Teacher/teacher_base.html" %}
+
+{% block teacher_content %}
+
+
+<div class="container">
+    <h3>{{teacher.pk}}</h3>
+    <h3>{{teacher.name}}</h3>
+    <h3>{{teacher.email}}</h3>
+    <h3>{{teacher.department}}</h3>
+    <h3>{{teacher.whatsno}}</h3>
+</div>
+
+<li class="nav-link">
+    <a href="{% url 'teacher:detail' pk=user.pk  %}">Detail</a>
+</li>
+
+{% endblock %}
